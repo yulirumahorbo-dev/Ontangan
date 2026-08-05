@@ -7,10 +7,19 @@ function App() {
   const customForm = useRef<FormHandle>(null);
 
   function handleSave(data: unknown) {
-    const extractedData = data as { name: string; age: string };
-    console.log(extractedData);
+    if (
+      !data ||
+      typeof data !== "object" ||
+      !("name" in data) ||
+      !("age" in data)
+    ) {
+      return;
+    }
+
+    console.log(data);
     customForm.current?.clear();
   }
+
   return (
     <main>
       <Form onSave={handleSave} ref={customForm}>
