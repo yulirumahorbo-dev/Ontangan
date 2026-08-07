@@ -1,9 +1,9 @@
 import {
-  forwardRef,
-  useImperativeHandle,
-  useRef,
+  type FormEvent,
   type ComponentPropsWithoutRef,
-  type SubmitEvent,
+  useRef,
+  useImperativeHandle,
+  forwardRef,
 } from "react";
 
 export type FormHandle = {
@@ -29,7 +29,7 @@ const Form = forwardRef<FormHandle, FormProps>(function Form(
     };
   });
 
-  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
